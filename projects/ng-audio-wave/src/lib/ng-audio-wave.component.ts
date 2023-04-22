@@ -4,10 +4,12 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
   Inject,
   Input,
   OnDestroy,
+  Output,
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
@@ -33,6 +35,8 @@ export class NgAudioWaveComponent implements AfterViewInit, OnDestroy {
     barLineProgressColor: '#E42535',
     barLineHoverColor: 'rgba(228, 37, 53, 0.3)',
   };
+  @Output() timeUpdate = new EventEmitter<number>();
+  @Output() durationUpdate = new EventEmitter<number>();
 
   width = 0;
   get barLineCount(): number {
@@ -112,6 +116,7 @@ export class NgAudioWaveComponent implements AfterViewInit, OnDestroy {
             this.audioSource = this.audioContext.createBufferSource();
             this.audioSource.buffer = this.audioBuffer;
             this.audioSource.connect(this.audioContext.destination);
+            this.durationUpdate.emit(this.audioBuffer.duration ?? 0);
             this.cd.detectChanges();
             this.generateWaveFormLayout();
           }
@@ -315,6 +320,7 @@ export class NgAudioWaveComponent implements AfterViewInit, OnDestroy {
     }
 
     this.playTime = selectedTime;
+    this.timeUpdate.emit(this.playTime);
     this.play();
   }
 
@@ -345,6 +351,7 @@ export class NgAudioWaveComponent implements AfterViewInit, OnDestroy {
         const currentTime = Date.now();
         let elapsedTimeInSeconds = (currentTime - this.playStart) / 1000;
         this.playTime = elapsedTimeInSeconds + this.previousPlayTime;
+        this.timeUpdate.emit(this.playTime);
 
         // Draw canvas
         this.drawCanvas();
@@ -369,6 +376,7 @@ export class NgAudioWaveComponent implements AfterViewInit, OnDestroy {
   onAudioEnded(): void {
     this.pause();
     this.playTime = 0;
+    this.timeUpdate.emit(this.playTime);
     this.drawCanvas();
   }
 
