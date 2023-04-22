@@ -1,0 +1,11 @@
+<div class="audio-container">
+  <span *ngIf="!isAudioAvailable && isLoading">Loading... </span>
+  <span *ngIf="!isLoading">Audio is not available </span>
+  <canvas
+    class="waveform"
+    #audioCanvas
+    (mousemove)="waveFormMouseMove($event)"
+    (mouseleave)="waveFormMouseLeave()"
+    (click)="waveFormClick()"
+  ></canvas>
+</div>
