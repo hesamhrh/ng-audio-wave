@@ -1,27 +1,69 @@
-# NgAudioWave
+Sure, here's the updated README with the sample `audioSrc` value:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+# ng-audio-wave
 
-## Development server
+`ng-audio-wave` is a package for creating dynamic waveform visualizations for audio files in Angular projects. With `ng-audio-wave`, you can easily create interactive and responsive waveform displays that adjust to fit any screen size or device.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Installation
 
-## Code scaffolding
+To install `ng-audio-wave`, simply run:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+npm install ng-audio-wave --save
+```
 
-## Build
+## Usage
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+In your app.module.ts file, import the `NgAudioWaveModule` module:
 
-## Running unit tests
+```typescript
+import { NgAudioWaveModule } from "ng-audio-wave";
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  imports: [
+    // ...
+    NgAudioWaveModule,
+  ],
+  // ...
+})
+export class AppModule {}
+```
 
-## Running end-to-end tests
+In your component.html file, use the `ng-audio-wave` component as follows:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```html
+<ng-audio-wave
+  audioSrc="https://example.com/my-audio-file.mp3"
+  [options]="options"
+></ng-audio-wave>
+```
 
-## Further help
+The `audioSrc` property is required and should be a string representing the URL of the audio file to display.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Here is an example of `options` that you can pass to the component:
+
+| Option                 | Type     | Default                     | Description                                          |
+| ---------------------- | -------- | --------------------------- | ---------------------------------------------------- |
+| `height`               | `number` | `100`                       | The height of the waveform in pixels.                |
+| `barLineWidth`         | `number` | `2`                         | The width of each bar line in pixels.                |
+| `barLineSpaceBetween`  | `number` | `1`                         | The amount of space between each bar line in pixels. |
+| `barLineColor`         | `string` | `'rgba(69, 123, 157, 0.3)'` | The color of the bar lines.                          |
+| `barLineProgressColor` | `string` | `'#E42535'`                 | The color of the progress bar.                       |
+| `barLineHoverColor`    | `string` | `'rgba(228, 37, 53, 0.3)'`  | The color of the bar lines when hovered over.        |
+
+All properties in `options` are optional. If you do not pass in any options, the component will use the default options:
+
+```typescript
+options = {
+  height: 100,
+  barLineWidth: 2,
+  barLineSpaceBetween: 1,
+  barLineColor: "rgba(69, 123, 157, 0.3)",
+  barLineProgressColor: "#E42535",
+  barLineHoverColor: "rgba(228, 37, 53, 0.3)",
+};
+```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.

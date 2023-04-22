@@ -19,7 +19,7 @@ declare global {
 }
 
 @Component({
-  selector: 'lib-ng-audio-wave',
+  selector: 'ng-audio-wave',
   templateUrl: './ng-audio-wave.component.html',
   styleUrls: ['./ng-audio-wave.component.css'],
 })

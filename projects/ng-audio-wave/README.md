@@ -1,24 +1,69 @@
-# NgAudioWave
+Sure, here's the updated README with the sample `audioSrc` value:
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
+# ng-audio-wave
 
-## Code scaffolding
+`ng-audio-wave` is a package for creating dynamic waveform visualizations for audio files in Angular projects. With `ng-audio-wave`, you can easily create interactive and responsive waveform displays that adjust to fit any screen size or device.
 
-Run `ng generate component component-name --project ng-audio-wave` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-audio-wave`.
-> Note: Don't forget to add `--project ng-audio-wave` or else it will be added to the default project in your `angular.json` file. 
+## Installation
 
-## Build
+To install `ng-audio-wave`, simply run:
 
-Run `ng build ng-audio-wave` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+npm install ng-audio-wave --save
+```
 
-## Publishing
+## Usage
 
-After building your library with `ng build ng-audio-wave`, go to the dist folder `cd dist/ng-audio-wave` and run `npm publish`.
+In your app.module.ts file, import the `NgAudioWaveModule` module:
 
-## Running unit tests
+```typescript
+import { NgAudioWaveModule } from "ng-audio-wave";
 
-Run `ng test ng-audio-wave` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  imports: [
+    // ...
+    NgAudioWaveModule,
+  ],
+  // ...
+})
+export class AppModule {}
+```
 
-## Further help
+In your component.html file, use the `ng-audio-wave` component as follows:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```html
+<ng-audio-wave
+  audioSrc="https://example.com/my-audio-file.mp3"
+  [options]="options"
+></ng-audio-wave>
+```
+
+The `audioSrc` property is required and should be a string representing the URL of the audio file to display.
+
+Here is an example of `options` that you can pass to the component:
+
+| Option                 | Type     | Default                     | Description                                          |
+| ---------------------- | -------- | --------------------------- | ---------------------------------------------------- |
+| `height`               | `number` | `100`                       | The height of the waveform in pixels.                |
+| `barLineWidth`         | `number` | `2`                         | The width of each bar line in pixels.                |
+| `barLineSpaceBetween`  | `number` | `1`                         | The amount of space between each bar line in pixels. |
+| `barLineColor`         | `string` | `'rgba(69, 123, 157, 0.3)'` | The color of the bar lines.                          |
+| `barLineProgressColor` | `string` | `'#E42535'`                 | The color of the progress bar.                       |
+| `barLineHoverColor`    | `string` | `'rgba(228, 37, 53, 0.3)'`  | The color of the bar lines when hovered over.        |
+
+All properties in `options` are optional. If you do not pass in any options, the component will use the default options:
+
+```typescript
+options = {
+  height: 100,
+  barLineWidth: 2,
+  barLineSpaceBetween: 1,
+  barLineColor: "rgba(69, 123, 157, 0.3)",
+  barLineProgressColor: "#E42535",
+  barLineHoverColor: "rgba(228, 37, 53, 0.3)",
+};
+```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
