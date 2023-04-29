@@ -4,6 +4,10 @@ Certainly! Here is an updated version of the README file for your `ng-audio-wave
 
 `ng-audio-wave` is a package for creating a waveform for audio files in Angular projects. The package provides a customizable waveform component that can be easily added to your project.
 
+## Demo
+
+Check out the demo [here](https://ng-audio-wave-demo.stackblitz.io/).
+
 ## Installation
 
 You can install `ng-audio-wave` using npm:
