@@ -1,6 +1,6 @@
 {
   "name": "ng-audio-wave",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Hesam Rezayi",
   "license": "MIT",
   "description": "ng-audio-wave is a package for creating a waveform for audio files in Angular projects. The package provides a customizable waveform component that can be easily added to your project.",
